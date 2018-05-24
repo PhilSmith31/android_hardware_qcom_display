@@ -1221,6 +1221,10 @@ android::status_t HWCSession::SetColorModeOverride(const android::Parcel *input_
     return -EINVAL;
   }
 
+  if (display >= HWC_NUM_DISPLAY_TYPES) {
+    return -EINVAL;
+  }
+
   auto err = CallDisplayFunction(device, display, &HWCDisplay::SetColorMode, mode);
   if (err != HWC2_ERROR_NONE)
     return -EINVAL;
